@@ -22,6 +22,6 @@ build/roman-num.o:
 	g++ $(CXXFLAGS) -c -o build/roman-num.o src/roman-num.cxx
 
 clean:
-	rm build/* $(TARGET)
+	rm build/* $(LIB_TARGET) $(APP_TARGET)
 
 .PHONY: clean
