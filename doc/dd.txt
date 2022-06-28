@@ -1,0 +1,12 @@
+roman-num
+===============
+a simple C++ program that takes decimal numbers as input and outputs corresponding
+roman numerals of equal value.
+
+I've also made an equivalent C++ static library.
+
+TODO:
+    - make the app dependent on the library & organize files accordingly
+
+p.s
+    I forgot to init repo when I started programming this — oops.

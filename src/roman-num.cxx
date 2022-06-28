@@ -14,7 +14,7 @@ std::string toRomanNum(int x){
         if(x >= 900){
             result += "CM";
         }
-        else if(x >= 400 && x < 500){
+        else if(x < 500 && x >= 400){
             result += "CD";
         }
         else{
@@ -33,7 +33,7 @@ std::string toRomanNum(int x){
         if(x >= 90){
             result += "XC";
         }
-        else if(x >= 40 && x < 50){
+        else if(x < 50 && x >= 40){
             result += "XL";
         }
         else{
@@ -52,7 +52,7 @@ std::string toRomanNum(int x){
         if(x >= 9){
             result += "IX";
         }
-        else if(x >= 4 && x < 5){
+        else if(x < 5 && x >= 4){
             result += "IV";
         }
         else{
