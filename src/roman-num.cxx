@@ -1,9 +1,10 @@
 #include <roman-num.hxx>
 
-std::string toRomanNum(int x){
-    std::string result;
+#include <stdexcept>
 
-    if(x > 0){
+std::string rmn::toRomanNum(int x){
+    std::string result;
+    if(x > 0 && x <= 3999){
         // parse thousands
         for(int i=0; i<x/1000; i++){
             result += "M";
@@ -66,6 +67,51 @@ std::string toRomanNum(int x){
             }
         }
     }
+    else{ // x is greater than greatest possible number in the numerical system or lower than the lowest
+        throw std::out_of_range("Integer input is out of range of standard Roman numeral representation!");
+    }
 
     return result;
+}
+
+int rmn::strToInt(const std::string &a){
+    int result = 0;
+
+    static char digits[10] = {'0','1','2','3','4','5','6','7','8','9'};
+
+    int x=0;
+    for(auto it=a.rbegin(); it != a.rend(); it++){
+        if(*it != digits[0]){
+            int d;
+            for(d=1; d < 10; d++){
+                if(*it == digits[d]){
+                    result += d * pow10(x);
+                    break;
+                }
+            }
+            if(d == 10){// character is NOT 0-9
+                switch (*it) {
+                    case '-':
+                        result *= -1;
+                        break;
+                    default:
+                        throw std::out_of_range("INVALID INPUT");
+                        break;
+                }
+            }
+        }
+        
+        x++;
+    }
+
+    return result;
+}
+
+int rmn::pow10(const int &x){
+    static int pow10tbl[10] = {
+        1, 10, 100, 1000, 10000, 100000,
+        1000000, 10000000, 100000000, 1000000000
+    };
+
+    return pow10tbl[x];
 }

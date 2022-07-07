@@ -9,11 +9,11 @@ all: app lib
 app: $(APP_TARGET)
 lib: $(LIB_TARGET)
 
+$(APP_TARGET): build/main.o $(LIB_TARGET)
+	g++ -o $(APP_TARGET) build/main.o $(LIB_TARGET)
+
 $(LIB_TARGET): build/roman-num.o
 	ar -crs $(LIB_TARGET) build/roman-num.o
-
-$(APP_TARGET): build/main.o build/roman-num.o
-	g++ -o $(APP_TARGET) build/main.o build/roman-num.o
 
 build/main.o:
 	g++ $(CXXFLAGS) -c -o build/main.o src/main.cxx

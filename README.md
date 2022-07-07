@@ -1,3 +1,3 @@
 # roman-num
 
-a program that converts decimal numerals to roman numerals
+roman-num is a CLI utility that converts decimal numerals to equivalent roman numerals, and vice-versa.

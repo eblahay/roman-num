@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
     try{
         if(argc < 2) throw std::runtime_error("Missing Required Argument!");
         for(int i=1; i<argc; i++){
-            std::cout << toRomanNum(std::atoi(argv[i])) << '\n';
+            std::cout << rmn::toRomanNum(rmn::strToInt(argv[i])) << '\n';
         }
 
         exit_code = 0;
