@@ -1,10 +1,16 @@
 #include <roman-num.hxx>
 
 #include <stdexcept>
+#include <vector>
+#include <algorithm>
 
-std::string rmn::toRomanNum(int x){
+std::string rmn::toRomanNum(int x, std::vector<rmn::RmnVariant> variants){
     std::string result;
-    if(x > 0 && x <= 3999){
+
+    if(x == 0 && std::binary_search(variants.begin(), variants.end(), nulla)){
+        result = 'N';
+    } 
+    else if(x > 0 && x <= 3999){
         // parse thousands
         for(int i=0; i<x/1000; i++){
             result += "M";
@@ -54,7 +60,8 @@ std::string rmn::toRomanNum(int x){
             result += "IX";
         }
         else if(x < 5 && x >= 4){
-            result += "IV";
+            if(std::binary_search(variants.begin(), variants.end(), quadbar)) result += "IIII";
+            else result += "IV";
         }
         else{
             if(x >= 5){
@@ -68,7 +75,7 @@ std::string rmn::toRomanNum(int x){
         }
     }
     else{ // x is greater than greatest possible number in the numerical system or lower than the lowest
-        throw std::out_of_range("Integer input is out of range of standard Roman numeral representation!");
+        throw std::out_of_range("Cannot properly represent given input!");
     }
 
     return result;

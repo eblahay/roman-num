@@ -1,10 +1,14 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace rmn {
-    // returns a string containing a roman numeral equivalent to the value of 'x'
-    std::string toRomanNum(int x);
+    // Roman Numeral Variants
+    enum RmnVariant {nulla, quadbar};
+
+    // returns a string containing a Roman numeral equivalent to the value of 'x'
+    std::string toRomanNum(int x, std::vector<RmnVariant> variants={});
 
     // converts a std::string (composed of decimal numerals) to an integer
     // also throws an exception if input cannot be reasonably interpreted as an integer

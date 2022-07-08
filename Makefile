@@ -5,9 +5,7 @@ AR = ar
 APP_TARGET = bin/roman-num
 LIB_TARGET = bin/roman-num.a
 
-all: app lib
-app: $(APP_TARGET)
-lib: $(LIB_TARGET)
+all: $(APP_TARGET)
 
 $(APP_TARGET): build/main.o $(LIB_TARGET)
 	g++ -o $(APP_TARGET) build/main.o $(LIB_TARGET)
