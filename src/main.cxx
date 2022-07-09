@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <cstdlib>
 
-#include <roman-num.hxx>
+#include <roman-num/roman-num.hxx>
 #include <vector>
 
 int main(int argc, char* argv[]){
