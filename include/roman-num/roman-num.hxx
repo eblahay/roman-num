@@ -4,11 +4,8 @@
 #include <vector>
 
 namespace rmn {
-    // Roman Numeral Variants
-    enum RmnVariant {nulla, quadbar};
-
     // returns a string containing a Roman numeral equivalent to the value of 'x'
-    std::string toRomanNum(int x, std::vector<RmnVariant> variants={});
+    std::string toRomanNum(int x);
 
     // converts a std::string (composed of decimal numerals) to an integer
     // also throws an exception if input cannot be reasonably interpreted as an integer

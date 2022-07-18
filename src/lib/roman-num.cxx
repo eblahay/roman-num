@@ -4,13 +4,10 @@
 #include <vector>
 #include <algorithm>
 
-std::string rmn::toRomanNum(int x, std::vector<rmn::RmnVariant> variants){
+std::string rmn::toRomanNum(int x){
     std::string result;
 
-    if(x == 0 && std::binary_search(variants.begin(), variants.end(), nulla)){
-        result = 'N';
-    } 
-    else if(x > 0 && x <= 3999){
+    if(x > 0 && x <= 3999){
         // parse thousands
         for(int i=0; i<x/1000; i++){
             result += "M";
@@ -60,8 +57,8 @@ std::string rmn::toRomanNum(int x, std::vector<rmn::RmnVariant> variants){
             result += "IX";
         }
         else if(x < 5 && x >= 4){
-            if(std::binary_search(variants.begin(), variants.end(), quadbar)) result += "IIII";
-            else result += "IV";
+            //if(quabar variant) result += "IIII";
+            result += "IV";
         }
         else{
             if(x >= 5){
@@ -74,7 +71,7 @@ std::string rmn::toRomanNum(int x, std::vector<rmn::RmnVariant> variants){
             }
         }
     }
-    else{ // x is greater than greatest possible number in the numerical system or lower than the lowest
+    else{
         throw std::out_of_range("Cannot properly represent given input!");
     }
 
