@@ -1,6 +1,15 @@
+LIBRARY
+========
 0.1.0
     features:
         - numeral conversion (from decimal to modern-standard roman)
 
-        application:
+APP
+========
+0.2.0
+    features:
+        - reworked command-line argument parsing
+
+0.1.0
+    features:
             - batch numeral conversion

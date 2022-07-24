@@ -1,12 +1,16 @@
+#include <ios>
 #include <roman-num/roman-num.hxx>
 
 #include <stdexcept>
+#include <string>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
-std::string rmn::toRomanNum(int x){
+std::string rmn::toRomanNum(int x, const VariationFlags &variations){
     std::string result;
 
+    // body
     if(x > 0 && x <= 3999){
         // parse thousands
         for(int i=0; i<x/1000; i++){
@@ -57,8 +61,8 @@ std::string rmn::toRomanNum(int x){
             result += "IX";
         }
         else if(x < 5 && x >= 4){
-            //if(quabar variant) result += "IIII";
-            result += "IV";
+            if(variations.fourbars) result += "IIII";
+            else result += "IV";
         }
         else{
             if(x >= 5){
@@ -71,11 +75,45 @@ std::string rmn::toRomanNum(int x){
             }
         }
     }
+    else if(variations.nulla && x == 0) result = "N";
     else{
-        throw std::out_of_range("Cannot properly represent given input!");
+        throw std::out_of_range("Cannot properly represent given input! (" + std::to_string(x) + ")");
     }
 
     return result;
+}
+
+std::string rmn::toRomanNum(int x, const std::vector<Variations> &variations){
+    return toRomanNum(x, parseVariation(variations));
+}
+
+std::vector<std::string> rmn::toRomanNum(std::vector<int> v, const std::vector<Variations> &variations){
+    std::vector<std::string> result;
+
+    auto variation_flags = rmn::parseVariation(variations);
+
+    for(auto x=v.begin(); x != v.end(); x++){
+        result.push_back(toRomanNum(*x, variation_flags));
+    }
+
+    return result;
+}
+
+rmn::VariationFlags rmn::parseVariation(const std::vector<Variations> &variations){
+    // process variations
+    VariationFlags variation_flags;
+    for(auto it=variations.begin(); it != variations.end(); it++){
+        switch (*it) {
+            case nulla:
+                variation_flags.nulla = true;
+                break;
+            case fourbars:
+                variation_flags.fourbars = true;
+                break;
+        }
+    }
+
+    return variation_flags;
 }
 
 int rmn::strToInt(const std::string &a){
